@@ -1,0 +1,37 @@
+var posX=0; posY=0; xOffset=40; yOffset=40;
+
+function previsualisation(image) {
+  var finalPosX=posX-xOffset;
+  if (finalPosX<0) finalPosX=0;
+  document.getElementById("prev").src=image;
+  document.getElementById("prev").style.position="absolute";
+  document.getElementById("prev").style.padding="5px";
+  document.getElementById("prev").style.border="1px solid #FF9900";
+  document.getElementById("prev").style.top=posY+yOffset+"px";
+  document.getElementById("prev").style.left=finalPosX+"px";
+  document.getElementById("prev").style.visibility="visible";
+}
+
+function getMousePos(e) {
+  if (document.all) { // Pour IE
+  posX=event.x+document.body.scrollLeft;
+  posY=event.y+document.body.scrollTop;
+  }
+  else { // pour les autres navigateurs
+  posX=e.pageX;
+  posY=e.pageY;
+  }
+}
+
+function masquer() {document.getElementById("prev").style.visibility="hidden";}
+
+function creation() {
+		bod = document.getElementsByTagName('body')[0];
+		imag = document.createElement("img");
+		imag.setAttribute("id","prev");
+		bod.appendChild(imag);
+		document.getElementById("prev").style.visibility="hidden";
+		document.onmousemove=getMousePos;
+}
+
+creation();

@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<!-- saved from url=(0043)https://www.lehtml.com/scripts/yeux03.html# -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Scripts DHTML - De la neige qui tombe en arrière-plan.</title>
+
+<meta name="Description" content="Scripts et astuces DHTML. Des scripts DHTML, du Javascript et des styles pour dynamiser votre site.">
+<meta name="KeyWords" content="Scripts,scripts,Dhtml,dhtml,DHTML,dynamic HTML,javacript,javascript 1.2,CSS,CSS1,CSS2,feuilles de style,stylesheets,demos,exemples,trucs et astuces,tutorial,html,free,gratuit,cup paste,copier coller">
+<meta http-equiv="Content-language" content="fr">
+<meta name="Author" content="Van Lancker Luc">
+<meta name="Copyright" content="copyright sur la compilation © Van Lancker Luc">
+<meta http-equiv="Reply-to" content="vanlancker.luc@lehtml.com">
+<meta name="Identifier-URL" content="http://www.lehtml.com/">
+<meta name="revisit-after" content="14 days">
+<meta name="robots" content="index, follow">
+<script>
+<!--
+function highlight(x){
+document.forms[x].elements[0].focus()
+document.forms[x].elements[0].select()
+}
+//-->
+   </script>
+<link href="./Scripts DHTML - De la neige qui tombe en arrière-plan._files/css" rel="stylesheet"></head><span id="warning-container"><i data-reactroot=""></i></span>
+<body text="#000000" bgcolor="#FFFFFF" link="#000080" vlink="#551A8B" alink="#FF0000">
+<script language="Javascript1.2">
+<!--
+//  Original:  Altan - http://www.altan.hr/snow -->
+var no = 15; // nombre de flocons
+var speed = 5; // plus le nombre est petit, plus la vitesse augmente
+var snowflake = "snow.gif"; // image
+//////////////////////////////////////////////////////////////////////////////
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width = 800, doc_height = 600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width = document.body.clientWidth;
+doc_height = document.body.clientHeight;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+am = new Array();
+stx = new Array();
+sty = new Array();
+for (i = 0; i < no; ++ i) {  
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-50);  // set position variables
+yp[i] = Math.random()*doc_height;
+am[i] = Math.random()*20;         // set amplitude variables
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(snowflake + "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(snowflake + "\" border=\"0\"></layer>");
+   }
+} else if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(snowflake + "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(snowflake + "\" border=\"0\"></div>");
+      }
+   }
+}
+function snowNS() {  // Netscape main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+yp[i] += sty[i];
+if (yp[i] > doc_height-50) {
+xp[i] = Math.random()*(doc_width-am[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+dx[i] += stx[i];
+document.layers["dot"+i].top = yp[i];
+document.layers["dot"+i].left = xp[i] + am[i]*Math.sin(dx[i]);
+}
+setTimeout("snowNS()", speed);
+}
+function snowIE() {  // IE main animation function
+for (i = 0; i < no; ++ i) {  // iterate for every dot
+yp[i] += sty[i];
+if (yp[i] > doc_height-50) {
+xp[i] = Math.random()*(doc_width-am[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = document.body.clientWidth;
+doc_height = document.body.clientHeight;
+}
+dx[i] += stx[i];
+document.all["dot"+i].style.pixelTop = yp[i];
+document.all["dot"+i].style.pixelLeft = xp[i] + am[i]*Math.sin(dx[i]);
+}
+setTimeout("snowIE()", speed);
+}
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</script>
+<table width="100%">
+<tbody><tr>
+<td width="50%" bgcolor="#FFFF00"><b>&nbsp;De la neige qui tombe en arrière-plan.
+<font color="#FF0000">IE4+ et NS4</font></b></td>
+
+<td>
+<div align="right"><p><a href="https://www.lehtml.com/scripts/tbyeux.html"><img src="./Scripts DHTML - De la neige qui tombe en arrière-plan._files/BACK.gif" border="0" height="11" width="23"></a></p></div>
+</td>
+</tr>
+</tbody></table>
+
+<p>Suite de la série des scripts inutiles, des flocons qui tombent
+en arrière-plan de la page.</p>
+
+<p><b><font color="#000080">Démo</font></b> : en cours.</p>
+
+<p></p><form><p></p>
+
+<p><i>Etape </i>1 : Ajouter dans le <font size="-1">&lt;BODY&gt;</font> :</p>
+
+<p><a href="https://www.lehtml.com/scripts/yeux03.html#" onclick="highlight(0)" onmouseover="window.status=&#39;&#39;;return true"><img src="./Scripts DHTML - De la neige qui tombe en arrière-plan._files/select.gif" border="0" height="15" width="68"></a><br>
+<textarea rows="5" name="gc1" cols="58" wrap="physical" style="margin: 0px; width: 498px; height: 375px;">&lt;SCRIPT LANGUAGE="Javascript1.2"&gt;
+&lt;!--
+//  Original:  Altan - http://www.altan.hr/snow --&gt;
+var no = 15; // nombre de flocons
+var speed = 5; // plus le nombre est petit, plus la vitesse augmente
+var snowflake = "snow.gif"; // image
+//////////////////////////////////////////////////////////////////////////////
+var ns4up = (document.layers) ? 1 : 0;  // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+var dx, xp, yp;    // coordinate and position variables
+var am, stx, sty;  // amplitude and step variables
+var i, doc_width = 800, doc_height = 600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width = document.body.clientWidth;
+doc_height = document.body.clientHeight;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+am = new Array();
+stx = new Array();
+sty = new Array();
+for (i = 0; i &lt; no; ++ i) {  
+dx[i] = 0;                        // set coordinate variables
+xp[i] = Math.random()*(doc_width-50);  // set position variables
+yp[i] = Math.random()*doc_height;
+am[i] = Math.random()*20;         // set amplitude variables
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random();     // set step variables
+if (ns4up) {                      // set layers
+if (i == 0) {
+document.write("&lt;layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"&gt;&lt;img src=\"");
+document.write(snowflake + "\" border=\"0\"&gt;&lt;/layer&gt;");
+} else {
+document.write("&lt;layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"&gt;&lt;img src=\"");
+document.write(snowflake + "\" border=\"0\"&gt;&lt;/layer&gt;");
+   }
+} else if (ie4up) {
+if (i == 0) {
+document.write("&lt;div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"&gt;&lt;img src=\"");
+document.write(snowflake + "\" border=\"0\"&gt;&lt;/div&gt;");
+} else {
+document.write("&lt;div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"&gt;&lt;img src=\"");
+document.write(snowflake + "\" border=\"0\"&gt;&lt;/div&gt;");
+      }
+   }
+}
+function snowNS() {  // Netscape main animation function
+for (i = 0; i &lt; no; ++ i) {  // iterate for every dot
+yp[i] += sty[i];
+if (yp[i] &gt; doc_height-50) {
+xp[i] = Math.random()*(doc_width-am[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+dx[i] += stx[i];
+document.layers["dot"+i].top = yp[i];
+document.layers["dot"+i].left = xp[i] + am[i]*Math.sin(dx[i]);
+}
+setTimeout("snowNS()", speed);
+}
+function snowIE() {  // IE main animation function
+for (i = 0; i &lt; no; ++ i) {  // iterate for every dot
+yp[i] += sty[i];
+if (yp[i] &gt; doc_height-50) {
+xp[i] = Math.random()*(doc_width-am[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = document.body.clientWidth;
+doc_height = document.body.clientHeight;
+}
+dx[i] += stx[i];
+document.all["dot"+i].style.pixelTop = yp[i];
+document.all["dot"+i].style.pixelLeft = xp[i] + am[i]*Math.sin(dx[i]);
+}
+setTimeout("snowIE()", speed);
+}
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End --&gt;
+&lt;/script&gt;
+</textarea></p>
+
+<p></p></form><p></p>
+
+<p>On peut modifier quelques paramètres au début du script
+:<br>
+var no = 15; // nombre de flocons<br>
+var speed = 5; // plus le nombre est petit, plus la vitesse augmente <br>
+var snowflake = "snow.gif"; // image </p>
+
+<p><i>Etape</i> 2 :<br>
+Capturer l'image (bouton droit &gt;&gt; enregistrer l'image sous) que vous
+placerez dans le répertoire de votre site.</p>
+
+<ul>
+<p><img src="./Scripts DHTML - De la neige qui tombe en arrière-plan._files/snow.gif" height="24" width="24"></p>
+</ul>
+
+
+</body></html>

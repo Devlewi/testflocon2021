@@ -1,0 +1,19 @@
+html {background-image:url(../images/etoiles.jpg); color:#FFFFFF}
+@media only screen and (max-width:750px) {
+html {background-image:none; background-color:#000}
+}
+body {margin:0}
+a {color:#FF0}
+h1 {font-family:forte; color:#F00; font-size: 2.2em; text-align:center}
+img {border:0; display:block; margin:auto}
+p {text-align:center; margin:0; padding:0}
+ul {list-style-type:none; text-align:center; padding:0}
+.lien_script {color:#FF0; cursor:pointer; text-decoration:underline}
+#ulfondue {margin:0}
+#ulfondue li, #ulfondue img{display:inline}
+#fix {position:fixed; right:0; top:250px; width:400px; border:1px solid #93B5E5; padding:10px; border-radius:1em}
+#formmusique {text-align:center}
+.gc {text-align:left; margin-top:10px}
+table, td, caption {padding:0; border:1px solid #0000FF; margin:auto; text-align:center}
+.aide {border:0}
+.nom {font-weight:bold; color:#FF0000}

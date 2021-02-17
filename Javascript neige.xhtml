@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+<title>Javascript neige</title>
+<meta name="description" content="Un javascript pour simuler la chute de neige à l&apos;écran compatible html5 et xhtml pour tous les navigateurs" />
+<meta name="keywords" content="javascript, neige, script, php, xhtml, html5, chute de neige, neige qui tombe, flocons, flocon" />
+<script type="text/javascript" src="./Javascript neige_files/asso_neige.js.téléchargement" />
+<link type="text/css" rel="stylesheet" href="./Javascript neige_files/base.css" />
+
+<link href="./Javascript neige_files/css" rel="stylesheet" /></head><span id="warning-container"><i data-reactroot="" /></span>
+<body>
+<p><a href="http://suresnes.croix-rouge.fr/">Pour accéder au site de la Croix-Rouge de Suresnes</a> (également sur <a href="http://twitter.com/CRFSuresnes">twitter</a> et <a href="http://www.facebook.com/pages/Croix-Rouge-francaise-delegation-de-Suresnes/125654477487031">facebook</a>)</p>
+<p><a href="http://mgmgeo.free.fr/" title="Site du logiciel d&apos;aide au géocaching MyGeocachingManager">Pour accéder au site MyGeocachingManager</a></p>
+<h1>Script pour simuler la chute de neige à l'écran</h1>
+<p class="gc">Il a été testé avec les navigateurs Firefox, Internet Explorer, Opéra, Chrome et Safari aussi bien au format text/html qu'application/xhtml+xml (mais dans ce cas placez le dans un dossier à part et non dans votre page elle-même). Si vous ne le voyez pas à l'écran, c'est que cela ne fonctionne pas avec votre navigateur ou que javascript est désactivé.</p>
+<p class="gc">Il vous faut placer <a href="./Javascript neige_files/neige.gif" onmouseover="previsualisation(&apos;images/neige.gif&apos;)" onmouseout="masquer()">l'image du flocon</a> à l'endroit indiqué dans le script par la ligne "para.setAttribute("src","images/neige.gif");" (dans le cas présent dans un dossier images à côté de la page).</p>
+<p class="gc">Le script à placer entre les balises <span style="text-decoration:underline">&lt;body&gt; et &lt;/body&gt;</span>:</p>
+<pre>
+&lt;script type="text/javascript"&gt;
+var no = 40;var delai = 10;
+var dx = new Array(), xp = new Array(), yp = new Array();
+var am = new Array(), stx = new Array(), sty = new Array();
+var i;
+larg_fenetre = (document.body.offsetWidth&lt;window.innerWidth)? window.innerWidth:document.body.offsetWidth;
+haut_fenetre = (document.body.offsetHeight&lt;window.innerHeight)? window.innerHeight:document.body.offsetHeight;
+
+for (i = 0; i &lt; no; i++) { 
+    dx[i] = 0;
+    xp[i] = Math.random()*(larg_fenetre-40);
+    yp[i] = Math.random()*haut_fenetre;
+    am[i] = Math.random()*20;
+    stx[i] = 0.02 + Math.random()/10;
+    sty[i] = 0.7 + Math.random();
+    
+    obj = document.getElementsByTagName('body')[0];
+    para = document.createElement("img");
+    para.setAttribute("src","images/neige.gif");
+    para.setAttribute("id","dot" + i);
+    para.style.position = "absolute";
+    para.style.zIndex = "2";
+    obj.appendChild(para);
+}
+
+function neige() {
+    for (i = 0; i &lt; no; i++) {
+        dx[i] += stx[i];
+        yp[i] += sty[i];
+        if (yp[i] &gt; haut_fenetre-50) {
+            xp[i] = Math.random()*(larg_fenetre-am[i]-40);
+            yp[i] = 0;
+        }
+        document.getElementById("dot"+i).style.top = yp[i] + "px";
+        document.getElementById("dot"+i).style.left = xp[i] + am[i]*Math.sin(dx[i]) + "px";
+    }
+    setTimeout("neige()", delai);
+}
+
+neige();
+&lt;/script&gt;
+</pre>
+<div id="fix">
+<p>Vous pouvez aussi</p>
+<ul>
+<li><span class="lien_script" onclick="remplacer(1)" onmouseover="previsualisation(&apos;images/feuille.gif&apos;)" onmouseout="masquer()">remplacer la neige par des feuilles</span> en autome et <span class="lien_script" onclick="remplacer(2)">vice-versa</span>.</li>
+<li><span class="lien_script" onclick="nombre(1)">densifier la chute</span> ou <span class="lien_script" onclick="nombre(2)">vice-versa</span>.</li>
+</ul>
+<p>à l'aide de <a href="./Javascript neige_files/asso_neige.js.téléchargement">cet autre script</a></p>
+</div>
+<script type="text/javascript" src="./Javascript neige_files/prevue.js.téléchargement" /><img id="prev" style="visibility: hidden;" />
+<script type="text/javascript" src="./Javascript neige_files/neige.js.téléchargement" /><img src="./Javascript neige_files/neige.gif" id="dot0" style="position: absolute; z-index: 2; left: 592.604px; top: 173.883px;" /><img src="./Javascript neige_files/neige.gif" id="dot1" style="position: absolute; z-index: 2; left: 141.189px; top: 561.074px;" /><img src="./Javascript neige_files/neige.gif" id="dot2" style="position: absolute; z-index: 2; left: 945.935px; top: 64.5515px;" /><img src="./Javascript neige_files/neige.gif" id="dot3" style="position: absolute; z-index: 2; left: 1185.42px; top: 367.169px;" /><img src="./Javascript neige_files/neige.gif" id="dot4" style="position: absolute; z-index: 2; left: 515.041px; top: 409.118px;" /><img src="./Javascript neige_files/neige.gif" id="dot5" style="position: absolute; z-index: 2; left: 329.733px; top: 600.712px;" /><img src="./Javascript neige_files/neige.gif" id="dot6" style="position: absolute; z-index: 2; left: 1109.98px; top: 180.071px;" /><img src="./Javascript neige_files/neige.gif" id="dot7" style="position: absolute; z-index: 2; left: 675.627px; top: 295.558px;" /><img src="./Javascript neige_files/neige.gif" id="dot8" style="position: absolute; z-index: 2; left: 810.814px; top: 59.4632px;" /><img src="./Javascript neige_files/neige.gif" id="dot9" style="position: absolute; z-index: 2; left: 1013.78px; top: 285.365px;" /><img src="./Javascript neige_files/neige.gif" id="dot10" style="position: absolute; z-index: 2; left: 994.675px; top: 301.338px;" /><img src="./Javascript neige_files/neige.gif" id="dot11" style="position: absolute; z-index: 2; left: 330.409px; top: 226.209px;" /><img src="./Javascript neige_files/neige.gif" id="dot12" style="position: absolute; z-index: 2; left: 1115.9px; top: 597.418px;" /><img src="./Javascript neige_files/neige.gif" id="dot13" style="position: absolute; z-index: 2; left: 1038.13px; top: 135.84px;" /><img src="./Javascript neige_files/neige.gif" id="dot14" style="position: absolute; z-index: 2; left: 869.696px; top: 724.168px;" /><img src="./Javascript neige_files/neige.gif" id="dot15" style="position: absolute; z-index: 2; left: 499.006px; top: 702.658px;" /><img src="./Javascript neige_files/neige.gif" id="dot16" style="position: absolute; z-index: 2; left: 1128.27px; top: 763.595px;" /><img src="./Javascript neige_files/neige.gif" id="dot17" style="position: absolute; z-index: 2; left: 30.3529px; top: 81.0416px;" /><img src="./Javascript neige_files/neige.gif" id="dot18" style="position: absolute; z-index: 2; left: 844.55px; top: 362.744px;" /><img src="./Javascript neige_files/neige.gif" id="dot19" style="position: absolute; z-index: 2; left: 861.8px; top: 650.662px;" /><img src="./Javascript neige_files/neige.gif" id="dot20" style="position: absolute; z-index: 2; left: 1223.88px; top: 149.992px;" /><img src="./Javascript neige_files/neige.gif" id="dot21" style="position: absolute; z-index: 2; left: 825.609px; top: 603.879px;" /><img src="./Javascript neige_files/neige.gif" id="dot22" style="position: absolute; z-index: 2; left: 882.754px; top: 31.1566px;" /><img src="./Javascript neige_files/neige.gif" id="dot23" style="position: absolute; z-index: 2; left: 302.822px; top: 138.794px;" /><img src="./Javascript neige_files/neige.gif" id="dot24" style="position: absolute; z-index: 2; left: 945.854px; top: 325.401px;" /><img src="./Javascript neige_files/neige.gif" id="dot25" style="position: absolute; z-index: 2; left: 154.071px; top: 547.744px;" /><img src="./Javascript neige_files/neige.gif" id="dot26" style="position: absolute; z-index: 2; left: 375.363px; top: 803.229px;" /><img src="./Javascript neige_files/neige.gif" id="dot27" style="position: absolute; z-index: 2; left: 580.73px; top: 518.792px;" /><img src="./Javascript neige_files/neige.gif" id="dot28" style="position: absolute; z-index: 2; left: 1008.77px; top: 468.565px;" /><img src="./Javascript neige_files/neige.gif" id="dot29" style="position: absolute; z-index: 2; left: 949.718px; top: 116.771px;" /><img src="./Javascript neige_files/neige.gif" id="dot30" style="position: absolute; z-index: 2; left: 928.395px; top: 314.659px;" /><img src="./Javascript neige_files/neige.gif" id="dot31" style="position: absolute; z-index: 2; left: 899.532px; top: 676.66px;" /><img src="./Javascript neige_files/neige.gif" id="dot32" style="position: absolute; z-index: 2; left: 886.429px; top: 161.859px;" /><img src="./Javascript neige_files/neige.gif" id="dot33" style="position: absolute; z-index: 2; left: 650.88px; top: 8.93699px;" /><img src="./Javascript neige_files/neige.gif" id="dot34" style="position: absolute; z-index: 2; left: 1133.48px; top: 279.99px;" /><img src="./Javascript neige_files/neige.gif" id="dot35" style="position: absolute; z-index: 2; left: 1271.52px; top: 676.39px;" /><img src="./Javascript neige_files/neige.gif" id="dot36" style="position: absolute; z-index: 2; left: 474.516px; top: 788.449px;" /><img src="./Javascript neige_files/neige.gif" id="dot37" style="position: absolute; z-index: 2; left: 640.421px; top: 388.607px;" /><img src="./Javascript neige_files/neige.gif" id="dot38" style="position: absolute; z-index: 2; left: 1096.47px; top: 502.981px;" /><img src="./Javascript neige_files/neige.gif" id="dot39" style="position: absolute; z-index: 2; left: 647.498px; top: 617.584px;" />
+<!-- phpmyvisites -->
+<script type="text/javascript">
+<!--
+var a_vars = Array();
+var pagename='';
+var phpmyvisitesSite = 2;
+var phpmyvisitesURL = "http://vic.drago.free.fr/phpmv2/phpmyvisites.php";
+//-->
+</script>
+<script src="./Javascript neige_files/phpmyvisites2.js.téléchargement" type="text/javascript" />
+<noscript>
+<div>
+<a href="http://www.phpmyvisites.net/" title="phpMyVisites | Open source web analytics">
+<img src="./Javascript neige_files/phpmyvisites.php" alt="" style="border:0" />
+</a>
+</div>
+</noscript>
+<!-- /phpmyvisites -->
+</body>
+</html>
